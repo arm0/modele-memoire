@@ -11,7 +11,7 @@ jobs:
       - uses: actions/setup-java@v5
         with: { distribution: temurin, java-version: '21' }
       - run: uname -m && nproc
-      - run: javac MessagePassing.java StoreBuffering.java
-      - run: java -Xint MessagePassing
-      - run: java MessagePassing
-      - run: java -Xint StoreBuffering
+      - run: javac MessagePassing.java MessagePassing2.java StoreBuffering.java
+      - run: for i in 1 2 3; do java -Xint MessagePassing  | grep perdu; done
+      - run: for i in 1 2 3; do java -Xint MessagePassing2 | grep perdu; done
+      - run: java MessagePassing2 | grep perdu
